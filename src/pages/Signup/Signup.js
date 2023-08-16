@@ -24,11 +24,11 @@ export default function Signup() {
     }*/
 
     // Em esse ponto é onde altero o initialState para os valores recebidos
-    const {form , onChangeForm} = useForm({username: "", email: "", password: "", password_password: ""})
+    const {form , onChangeForm} = useForm({registernname: "" , username: "", email: "", password: "", password_password: ""})
     const enviarCadastro = () => {
         //* EXTRA: validando a senha - ter certeza que o usuário sabe qual senha cadastrou
         if (form.password === form.password_password) {
-            console.log(form.username, form.email, form.password_password)
+            console.log(form.registername , form.username, form.email, form.password_password)
         }
     }
 
@@ -37,11 +37,22 @@ export default function Signup() {
             <ContainerForm onSubmit={enviarCadastro}>
                 <label htmlFor="username">Nome de usuario:</label>
                 <Input
+                    id={'registername'}
+                    name={"registername"}
+                    value={form.registername}
+                    onChange={onChangeForm}
+                    placeholder="nome para cadastro"
+                    type='text'
+                    required
+                />
+                <Input
                     id={'username'}
                     name={"username"}
                     value={form.username}
                     onChange={onChangeForm}
                     placeholder="username"
+                    type='text'
+                    required
                 />
                 <label htmlFor='email'>Email:</label>
                 <Input
@@ -50,6 +61,8 @@ export default function Signup() {
                     value={form.email}
                     onChange={onChangeForm}
                     placeholder="nome@email.com"
+                    type='email'
+                    required
                 />
                 <label htmlFor='senha'>Senha:</label>
                 <Input
@@ -58,6 +71,8 @@ export default function Signup() {
                     value={form.password}
                     onChange={onChangeForm}
                     placeholder="Crie sua senha"
+                    type='password'
+                    required
                 />
                 <label htmlFor='password_password'>Confirmação de senha:</label>
                 <Input
@@ -66,6 +81,8 @@ export default function Signup() {
                     value={form.password_password}
                     onChange={onChangeForm}
                     placeholder="Confirme a senha"
+                    type="password"
+                    required
                 />
                 <button>Cadastrar</button>
             </ContainerForm>
