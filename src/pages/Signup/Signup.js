@@ -35,7 +35,8 @@ export default function Signup() {
     return (
         <ContainerSignup>
             <ContainerForm onSubmit={enviarCadastro}>
-                <label htmlFor="username">Nome de usuario:</label>
+                {/*em lugar de funcionario agrega registername */}
+                <label htmlFor="registername">Nome de Cadastro:</label>
                 <Input
                     id={'registername'}
                     name={"registername"}
@@ -45,6 +46,7 @@ export default function Signup() {
                     type='text'
                     required
                 />
+                <label htmlFor="username">Nome de usuario:</label>
                 <Input
                     id={'username'}
                     name={"username"}
@@ -59,12 +61,14 @@ export default function Signup() {
                     id='email'
                     name="email"
                     value={form.email}
+                    pattern='/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/'
                     onChange={onChangeForm}
                     placeholder="nome@email.com"
                     type='email'
                     required
-                />
-                <label htmlFor='senha'>Senha:</label>
+                    title="o campo devera ser email valido ex: 'user@email.com'"
+                />  
+                <label htmlFor='password'>Senha:</label>
                 <Input
                     name={"password"}
                     id={"password"}
@@ -73,6 +77,8 @@ export default function Signup() {
                     placeholder="Crie sua senha"
                     type='password'
                     required
+                    title="senha deve ter de 8 a 12 caracteres e conter pelo menos 1 numero, 1 letra maiuscula e 1 caracter especial $*&@#'"
+                    pattern='/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/'
                 />
                 <label htmlFor='password_password'>Confirmação de senha:</label>
                 <Input
